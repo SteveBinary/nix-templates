@@ -28,6 +28,10 @@
           path = ./rust;
           description = "Rust template";
         };
+        python = {
+          path = ./python;
+          description = "Python template";
+        };
       };
     };
 }
