@@ -12,7 +12,7 @@
   };
 
   outputs =
-    { ... }@inputs:
+    inputs:
     inputs.flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -32,7 +32,7 @@
           ];
         };
 
-        formatter = pkgs.nixfmt-rfc-style;
+        formatter = pkgs.nixfmt;
       }
     );
 }
