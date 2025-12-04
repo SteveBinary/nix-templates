@@ -7,19 +7,15 @@
   };
 
   outputs =
-    { ... }@inputs:
+    inputs:
     inputs.flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import inputs.nixpkgs { inherit system; };
       in
       {
-        formatter = pkgs.nixfmt-rfc-style;
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            just
-          ];
-        };
+        formatter = pkgs.nixfmt;
+        devShells.default = pkgs.mkShell { packages = with pkgs; [ just ]; };
       }
     )
     // {
