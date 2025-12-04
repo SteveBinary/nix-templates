@@ -1,5 +1,5 @@
 {
-  description = "A Nix-flake-based development environment for Python";
+  description = "A Nix-flake-based pure-nix development environment for Python";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -7,28 +7,18 @@
   };
 
   outputs =
-    { ... }@inputs:
+    inputs:
     inputs.flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import inputs.nixpkgs {
-          inherit system;
-        };
+        pkgs = import inputs.nixpkgs { inherit system; };
 
-        myPython = pkgs.python313.withPackages (
-          pp: with pp; [
-            # python packages
-          ]
-        );
+        myPython = pkgs.python314.withPackages (pp: with pp; [ numpy ]);
       in
       {
-        devShells.default = pkgs.mkShell {
-          packages = [
-            myPython
-          ];
-        };
+        devShells.default = pkgs.mkShell { packages = [ myPython ]; };
 
-        formatter = pkgs.nixfmt-rfc-style;
+        formatter = pkgs.nixfmt;
       }
     );
 }
