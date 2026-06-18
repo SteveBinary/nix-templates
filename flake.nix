@@ -15,7 +15,11 @@
       in
       {
         formatter = pkgs.nixfmt;
-        devShells.default = pkgs.mkShell { packages = with pkgs; [ just ]; };
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            just
+          ];
+        };
       }
     )
     // {

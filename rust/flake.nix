@@ -26,13 +26,13 @@
         );
       in
       {
+        formatter = pkgs.nixfmt;
+
         devShells.default = craneLib.devShell {
           packages = with pkgs; [
             # addional packages for the dev shell
           ];
         };
-
-        formatter = pkgs.nixfmt;
       }
     );
 }

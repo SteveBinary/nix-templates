@@ -16,9 +16,13 @@
         myPython = pkgs.python314.withPackages (pp: with pp; [ numpy ]);
       in
       {
-        devShells.default = pkgs.mkShell { packages = [ myPython ]; };
-
         formatter = pkgs.nixfmt;
+
+        devShells.default = pkgs.mkShell {
+          packages = [
+            myPython
+          ];
+        };
       }
     );
 }
